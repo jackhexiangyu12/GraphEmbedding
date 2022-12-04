@@ -42,7 +42,7 @@ def plot_embeddings(embeddings,):
 
 
 if __name__ == "__main__":
-    G = nx.read_edgelist('../data/wiki/Wiki_edgelist.txt',
+    G = nx.read_edgelist('../baseline_full_edges.txt',
                          create_using=nx.DiGraph(), nodetype=None, data=[('weight', int)])
 
     model = DeepWalk(G, walk_length=10, num_walks=80, workers=1)
