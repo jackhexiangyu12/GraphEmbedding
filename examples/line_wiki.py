@@ -40,14 +40,24 @@ def plot_embeddings(embeddings,):
     plt.legend()
     plt.show()
 
+from pathlib import Path
 
 if __name__ == "__main__":
-    G = nx.read_edgelist('../data/wiki/Wiki_edgelist.txt',
+    # G = nx.read_edgelist('../data/wiki/Wiki_edgelist.txt',
+    #                      create_using=nx.DiGraph(), nodetype=None, data=[('weight', int)])
+    G = nx.read_edgelist('../baseline_pos_edges.txt',
                          create_using=nx.DiGraph(), nodetype=None, data=[('weight', int)])
 
     model = LINE(G, embedding_size=128, order='second')
     model.train(batch_size=1024, epochs=50, verbose=2)
     embeddings = model.get_embeddings()
 
-    evaluate_embeddings(embeddings)
-    plot_embeddings(embeddings)
+    i6000={k: v for k, v in embeddings.items() if int(k) <2206}
+    ws={k: v for k, v in embeddings.items() if int(k)  >= 2206}
+    qianzhui=Path(__file__).stem
+    dataname='baseline_pos_edges'
+    np.save(qianzhui+'_'+dataname+'_ws_embeddings.npy', ws)
+    np.save(qianzhui+'_'+dataname+'_i6000_embeddings.npy', i6000)
+
+    # evaluate_embeddings(embeddings)
+    # plot_embeddings(embeddings)

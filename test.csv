@@ -1,0 +1,8 @@
+name,age
+Tony,17
+李华,21
+name,age
+Tony,"[17, 23]"
+李华,"[21, 23]"
+WWWW,MSS,TTL,WS,S,N,D,T,F,LEN
+FFFF,2,40,3,1,1,0,8,S,3C
